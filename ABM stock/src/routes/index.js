@@ -7,6 +7,9 @@ export default function RoutesMain() {
   return (
     <Routes>
       <Route exact path="/" element={<Index />} />
+      <Route exact path="/store" element={<Index />} />
+      <Route exact path="/view/:id" element={<Index />} />
+      <Route exact path="/delete/:id" element={<Index />} />
       <Route path="*" element={<Page404 />} />
     </Routes>
   );

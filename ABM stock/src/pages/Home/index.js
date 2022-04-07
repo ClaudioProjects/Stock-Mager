@@ -1,23 +1,82 @@
 import React, { useEffect, useState } from 'react';
-import Table from '../../components/Table/index';
-// import axios from '../../services/axios';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import tw from 'twin.macro';
+import TableHead from '../../components/HeaderTable';
+import axios from '../../services/axios';
+
+const Container = styled.div`
+  ${tw` w-[97%] mb-5 mx-1.5 font-medium`}
+`;
 
 function Index() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    function getProducts() {
-      // const response = await axios.get('');
-      const response = ['323', '32321'];
+    async function getProducts() {
+      const response = await axios.get('');
       return setProducts(response.data);
     }
     getProducts();
   }, []);
-
-  console.log(products);
-
   return (
-    <Table>{/* {products.map((product) => console.log(product))} */}</Table>
+    <Container>
+      <TableHead />
+      <div className="w-full h-full relative">
+        {products.map((product) => {
+          return (
+            <div
+              key={product._id}
+              className=" grid-configs grid-cols-custom mb-2 rounded-xl md:rounded-sm shadow-md"
+            >
+              <div className="grid-items relative">
+                <small className="grid-label-item">Id:</small>
+                <small className=" text-xs ">{product._id}</small>
+              </div>
+              <div className="grid-items relative">
+                <small className="grid-label-item">Status:</small>
+                {product.active ? 'Ativado' : 'Desativado'}
+              </div>
+              <div className="grid-items relative">
+                <small className="grid-label-item">Produto:</small>
+                {product.product.name}
+              </div>
+              <div className="grid-items relative">
+                <small className="grid-label-item">Preço:</small>
+                {product.price}
+              </div>
+              <div className="grid-items relative">
+                <small className="grid-label-item">Quantidade:</small>
+                {product.quantity}
+              </div>
+              <div className="grid-items relative">
+                <small className="grid-label-item">Selecionar:</small>
+                <Link
+                  to={`/view/${product._id}`}
+                  className="grid-link-global bg-blue-500"
+                >
+                  Selecionar
+                </Link>
+              </div>
+              <div className="grid-last-items relative">
+                <small className="grid-label-item">Apagar:</small>
+                <Link
+                  to={`/delete/${product._id}`}
+                  className="grid-link-global bg-red-600"
+                >
+                  Deletar
+                </Link>
+              </div>
+            </div>
+          );
+        })}
+        <div className=" mb-3 flex justify-end items-center ">
+          <Link to="/store" className="grid-link-store">
+            Add+
+          </Link>
+        </div>
+      </div>
+    </Container>
   );
 }
 

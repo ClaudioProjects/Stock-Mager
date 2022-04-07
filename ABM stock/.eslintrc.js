@@ -29,5 +29,6 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'no-console': 0,
     'no-underscore-dangle': 0,
+    'array-callback-return': 0,
   },
 };

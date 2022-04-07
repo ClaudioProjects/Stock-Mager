@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-th {
-  width: 20%;
+.grid-cols-custom {
+  grid-template-columns: 18.4% 14.2% 18.4% 14.2% 14.2% 10% 10.5%;
+}
+
+.grid-items {
+  @apply h-8 md:h-10 lg:h-12 pt-1 md:pt-3 md:pr-0 md:border-0 pr-[6px] border-b-[1px] border-solid border-gray-500
+}
+
+.grid-last-items {
+  @apply h-8 md:h-10 lg:h-12 pt-1 md:pt-3 md:pr-0 md:border-0 pr-[6px]
+}
+
+.grid-configs {
+  @apply md:grid bg-white text-right md:text-center mx-auto text-xs lg:text-base
+}
+
+.grid-label-item {
+  @apply md:hidden inline absolute left-2 top-[3px] text-sm
+}
+
+.grid-link-global {
+  @apply inline-block text-center h-6 w-[70px] md:inline md:text-right md:h-5 p-1 text-white font-bold rounded-lg
+}
+
+.grid-link-store {
+  @apply block h-[40px] w-[70px] text-center bg-emerald-500 p-2 rounded-2xl text-white font-extrabold
 }
