@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
 import Validation from '../../services/validationForm';
 import axios from '../../services/axios';
@@ -9,13 +9,41 @@ import axios from '../../services/axios';
 const Container = styled.form`
   ${tw` w-[97%] p-5 mb-5 mx-auto relative font-medium bg-white shadow-md rounded-2xl`}
 `;
-export default function Store() {
+export default function Update() {
+  const [clientName, setClientName] = useState('');
+  const [clientSurname, setClientSurname] = useState('');
+  const [clientEmail, setClientEmail] = useState('');
+  const [productName, setProductName] = useState('');
+  const [category, setCategory] = useState('');
+  const [price, setPrice] = useState(Number);
+  const [quantity, setQuantity] = useState(Number);
+  const [active, setActive] = useState(Boolean);
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    async function getProducts() {
+      const response = await axios.get('/');
+      const values = response.data;
+      console.log(values);
+      setClientName(values[0].client.name);
+      setClientSurname(values[0].client.surname);
+      setClientEmail(values[0].client.email);
+      setProductName(values[0].product.name);
+      setCategory(values[0].product.category);
+      setPrice(values[0].price);
+      setQuantity(values[0].quantity);
+      setActive(values[0].active);
+    }
+    getProducts();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const instace = new Validation();
     if (instace.error.length > 0) return;
     instace.values.date = new Date();
-    await axios.post('/', instace.values);
+    await axios.put(`/${id}`, instace.values);
     instace.form.submit();
   };
 
@@ -39,6 +67,8 @@ export default function Store() {
             name="name"
             pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$"
             minLength={3}
+            value={clientName}
+            onChange={(e) => setClientName(e.target.value)}
           />
         </div>
         <div className="relative">
@@ -49,6 +79,8 @@ export default function Store() {
             name="surname"
             pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$"
             minLength={3}
+            value={clientSurname}
+            onChange={(e) => setClientSurname(e.target.value)}
           />
         </div>
         <div className="relative">
@@ -57,6 +89,8 @@ export default function Store() {
             className="input-text email"
             placeholder="Email:"
             name="email"
+            value={clientEmail}
+            onChange={(e) => setClientEmail(e.target.value)}
           />
         </div>
       </div>
@@ -72,6 +106,8 @@ export default function Store() {
             name="product"
             pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$"
             minLength={3}
+            value={productName}
+            onChange={(e) => setProductName(e.target.value)}
           />
         </div>
         <div className="relative">
@@ -81,6 +117,8 @@ export default function Store() {
             placeholder="Categoria:"
             name="category"
             pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
           />
         </div>
         <div className="relative">
@@ -91,6 +129,8 @@ export default function Store() {
             min={0.1}
             placeholder="Preço:"
             name="price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
           />
         </div>
         <div className="relative">
@@ -100,6 +140,8 @@ export default function Store() {
             min={1}
             placeholder="Quantidade:"
             name="quantity"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
           />
         </div>
         <label
@@ -112,7 +154,8 @@ export default function Store() {
             type="checkbox"
             name="active"
             className="ml-2 active"
-            value="passcheck"
+            value={active}
+            onChange={(e) => setActive(e.target.value)}
           />
         </label>
       </div>

@@ -8,7 +8,6 @@ export default class Validation {
       client: {},
       product: {},
       active: false,
-      date: new Date(),
     };
     this.error = [];
     this.handleMethods();
