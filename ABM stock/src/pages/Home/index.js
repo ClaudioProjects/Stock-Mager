@@ -19,6 +19,13 @@ function Index() {
     }
     getProducts();
   }, []);
+
+  async function handleDelete(id, e) {
+    await axios.delete(`/${id}`);
+    const element = e.target;
+    element.parentNode.parentNode.remove();
+  }
+
   return (
     <Container>
       <TableHead />
@@ -60,12 +67,13 @@ function Index() {
               </div>
               <div className="grid-last-items relative">
                 <small className="grid-label-item">Apagar:</small>
-                <Link
-                  to={`/delete/${product._id}`}
-                  className="grid-link-global bg-red-600"
+                <button
+                  onClick={(e) => handleDelete(product._id, e)}
+                  type="button"
+                  className="grid-last-link-global bg-red-600"
                 >
                   Deletar
-                </Link>
+                </button>
               </div>
             </div>
           );

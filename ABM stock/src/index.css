@@ -11,7 +11,7 @@
 }
 
 .grid-last-items {
-  @apply h-8 md:h-10 lg:h-12 pt-1 md:pt-3 md:pr-0 md:border-0 pr-[6px]
+  @apply h-8 md:h-10 lg:h-12 md:pr-0 md:border-0 pr-[6px] flex justify-end md:justify-center items-center
 }
 
 .grid-configs {
@@ -26,6 +26,19 @@
   @apply inline-block text-center h-6 w-[70px] md:inline md:text-right md:h-5 p-1 text-white font-bold rounded-lg
 }
 
+.grid-last-link-global {
+  @apply block text-center w-[70px] md:inline p-1 h-[24px] lg:h-[29px] md:p-0 text-white font-bold rounded-lg
+}
+
 .grid-link-store {
   @apply block h-[40px] w-[70px] text-center bg-emerald-500 p-2 rounded-2xl text-white font-extrabold
 }
+
+.input-text {
+  @apply h-12 w-full bg-gray-100 shadow-md rounded-sm border-2 border-transparent border-solid focus:border-violet-200 outline-0 placeholder:text-gray-600
+}
+
+.error-text {
+  @apply absolute top-0 left-1 text-xs z-10 text-red-400
+}
+

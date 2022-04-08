@@ -1,5 +1,6 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL: 'https://crudcrud.com/api/99d91c9501ca49a2a2c349ff72584515/products',
+  // Cole aqui a url gerada pelo site, lembre de colocar /products no final
+  baseURL: 'https://crudcrud.com/api/222fdb8598894f64854bea5e8b8b0d50/products',
 });
