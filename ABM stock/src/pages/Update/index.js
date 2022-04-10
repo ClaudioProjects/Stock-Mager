@@ -18,31 +18,34 @@ export default function Update() {
   const [price, setPrice] = useState(Number);
   const [quantity, setQuantity] = useState(Number);
   const [active, setActive] = useState(Boolean);
+  const [data, setData] = useState('');
 
   const { id } = useParams();
 
   useEffect(() => {
     async function getProducts() {
-      const response = await axios.get('/');
+      const response = await axios.get(`/${id}`);
       const values = response.data;
-      console.log(values);
-      setClientName(values[0].client.name);
-      setClientSurname(values[0].client.surname);
-      setClientEmail(values[0].client.email);
-      setProductName(values[0].product.name);
-      setCategory(values[0].product.category);
-      setPrice(values[0].price);
-      setQuantity(values[0].quantity);
-      setActive(values[0].active);
+      setClientName(values.client.name);
+      setClientSurname(values.client.surname);
+      setClientEmail(values.client.email);
+      setProductName(values.product.name);
+      setCategory(values.product.category);
+      setPrice(values.price);
+      setQuantity(values.quantity);
+      setActive(values.active);
+      setData(values.date);
     }
     getProducts();
-  }, []);
+  }, [id]);
+
+  const teste = new Date(data);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const instace = new Validation();
     if (instace.error.length > 0) return;
-    instace.values.date = new Date();
+    instace.values.date = new Date(data);
     await axios.put(`/${id}`, instace.values);
     instace.form.submit();
   };
@@ -53,7 +56,7 @@ export default function Update() {
         <FaTimes className="text-3xl text-red-500" />
       </Link>
       <h1 className="text-2xl sm:text-4xl text-center font-bold mb-10">
-        Cadastro de produtos
+        Edição de Produto
       </h1>
       <h2 className="text-center text-xl sm:text-2xl mb-5">
         Informações do usuario
@@ -146,7 +149,7 @@ export default function Update() {
         </div>
         <label
           htmlFor="checkbox"
-          className="h-12 bg-gray-100 shadow-md text-gray-600 pt-3 text-center sm:col-span-2"
+          className="h-12 bg-gray-100 shadow-md text-gray-600 pt-3 text-center"
         >
           O produto esta disponivel?
           <input
@@ -154,16 +157,19 @@ export default function Update() {
             type="checkbox"
             name="active"
             className="ml-2 active"
-            value={active}
-            onChange={(e) => setActive(e.target.value)}
+            checked={active}
+            onChange={() => setActive(!active)}
           />
         </label>
+        <div className="h-12 bg-gray-100 shadow-md text-gray-600 pt-3 text-center">
+          Criado em: {teste.toLocaleString()}
+        </div>
       </div>
       <button
         type="submit"
         className="text-white font-bold text-lg bg-green-500 h-14 rounded-md shadow-md w-[100%]"
       >
-        Cadastrar
+        Editar
       </button>
     </Container>
   );
