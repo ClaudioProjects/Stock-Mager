@@ -50,7 +50,7 @@ function Index() {
               </div>
               <div className="grid-items relative">
                 <small className="grid-label-item">Preço:</small>
-                {product.price}
+                R$ {product.price.toFixed(2)}
               </div>
               <div className="grid-items relative">
                 <small className="grid-label-item">Quantidade:</small>
