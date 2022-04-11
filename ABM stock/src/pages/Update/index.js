@@ -7,7 +7,7 @@ import Validation from '../../services/validationForm';
 import axios from '../../services/axios';
 
 const Container = styled.form`
-  ${tw` w-[97%] p-5 mb-5 mx-auto relative font-medium bg-white shadow-md rounded-2xl`}
+  ${tw` w-[97%] p-5 mb-5 mx-auto relative font-medium bg-white shadow-md rounded-2xl dark:text-gray-300`}
 `;
 export default function Update() {
   const [clientName, setClientName] = useState('');
@@ -39,7 +39,7 @@ export default function Update() {
     getProducts();
   }, [id]);
 
-  const teste = new Date(data);
+  const date = new Date(data);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,7 +51,12 @@ export default function Update() {
   };
 
   return (
-    <Container onSubmit={handleSubmit} action="/" method="get">
+    <Container
+      onSubmit={handleSubmit}
+      action="/"
+      method="get"
+      className="dark:bg-slate-800"
+    >
       <Link to="/" className="absolute right-1 top-1">
         <FaTimes className="text-3xl text-red-500" />
       </Link>
@@ -72,6 +77,7 @@ export default function Update() {
             minLength={3}
             value={clientName}
             onChange={(e) => setClientName(e.target.value)}
+            autoComplete="off"
           />
         </div>
         <div className="relative">
@@ -84,6 +90,7 @@ export default function Update() {
             minLength={3}
             value={clientSurname}
             onChange={(e) => setClientSurname(e.target.value)}
+            autoComplete="off"
           />
         </div>
         <div className="relative">
@@ -94,6 +101,7 @@ export default function Update() {
             name="email"
             value={clientEmail}
             onChange={(e) => setClientEmail(e.target.value)}
+            autoComplete="off"
           />
         </div>
       </div>
@@ -111,6 +119,7 @@ export default function Update() {
             minLength={3}
             value={productName}
             onChange={(e) => setProductName(e.target.value)}
+            autoComplete="off"
           />
         </div>
         <div className="relative">
@@ -122,6 +131,7 @@ export default function Update() {
             pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
+            autoComplete="off"
           />
         </div>
         <div className="relative">
@@ -134,6 +144,7 @@ export default function Update() {
             name="price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            autoComplete="off"
           />
         </div>
         <div className="relative">
@@ -145,11 +156,12 @@ export default function Update() {
             name="quantity"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
+            autoComplete="off"
           />
         </div>
         <label
           htmlFor="checkbox"
-          className="h-12 bg-gray-100 shadow-md text-gray-600 pt-3 text-center"
+          className="h-12 bg-gray-100 dark:bg-[#232F44] shadow-md text-gray-600 dark:text-gray-300 pt-3 text-center"
         >
           O produto esta disponivel?
           <input
@@ -161,8 +173,8 @@ export default function Update() {
             onChange={() => setActive(!active)}
           />
         </label>
-        <div className="h-12 bg-gray-100 shadow-md text-gray-600 pt-3 text-center">
-          Criado em: {teste.toLocaleString()}
+        <div className="h-12 bg-gray-100 dark:bg-[#232F44] shadow-md text-gray-600 dark:text-gray-300 pt-3 text-center">
+          Criado em: {date.toLocaleString()}
         </div>
       </div>
       <button

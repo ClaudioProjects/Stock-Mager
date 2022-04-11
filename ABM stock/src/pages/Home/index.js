@@ -6,7 +6,7 @@ import TableHead from '../../components/HeaderTable';
 import axios from '../../services/axios';
 
 const Container = styled.div`
-  ${tw` w-[97%] mb-5 mx-1.5 font-medium`}
+  ${tw` w-[97%] mb-5 mx-1.5 font-medium dark:text-white`}
 `;
 
 function Index() {
@@ -34,7 +34,7 @@ function Index() {
           return (
             <div
               key={product._id}
-              className=" grid-configs grid-cols-custom mb-2 rounded-xl md:rounded-sm shadow-md"
+              className=" grid-configs grid-cols-custom mb-2 rounded-xl md:rounded-md shadow-md dark:bg-slate-700"
             >
               <div className="grid-items relative">
                 <small className="grid-label-item">Id:</small>

@@ -7,7 +7,7 @@ import Validation from '../../services/validationForm';
 import axios from '../../services/axios';
 
 const Container = styled.form`
-  ${tw` w-[97%] p-5 mb-5 mx-auto relative font-medium bg-white shadow-md rounded-2xl`}
+  ${tw` w-[97%] p-5 mb-5 mx-auto relative font-medium bg-white shadow-md rounded-2xl dark:text-white`}
 `;
 export default function Store() {
   const handleSubmit = async (e) => {
@@ -20,7 +20,12 @@ export default function Store() {
   };
 
   return (
-    <Container onSubmit={handleSubmit} action="/" method="get">
+    <Container
+      onSubmit={handleSubmit}
+      action="/"
+      method="get"
+      className="dark:bg-slate-800"
+    >
       <Link to="/" className="absolute right-1 top-1">
         <FaTimes className="text-3xl text-red-500" />
       </Link>
@@ -39,6 +44,7 @@ export default function Store() {
             name="name"
             pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$"
             minLength={3}
+            autoComplete="off"
           />
         </div>
         <div className="relative">
@@ -49,6 +55,7 @@ export default function Store() {
             name="surname"
             pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$"
             minLength={3}
+            autoComplete="off"
           />
         </div>
         <div className="relative">
@@ -57,6 +64,7 @@ export default function Store() {
             className="input-text email"
             placeholder="Email:"
             name="email"
+            autoComplete="off"
           />
         </div>
       </div>
@@ -72,6 +80,7 @@ export default function Store() {
             name="product"
             pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$"
             minLength={3}
+            autoComplete="off"
           />
         </div>
         <div className="relative">
@@ -81,6 +90,7 @@ export default function Store() {
             placeholder="Categoria:"
             name="category"
             pattern="[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$"
+            autoComplete="off"
           />
         </div>
         <div className="relative">
@@ -91,6 +101,7 @@ export default function Store() {
             min={0.1}
             placeholder="Preço:"
             name="price"
+            autoComplete="off"
           />
         </div>
         <div className="relative">
@@ -100,11 +111,12 @@ export default function Store() {
             min={1}
             placeholder="Quantidade:"
             name="quantity"
+            autoComplete="off"
           />
         </div>
         <label
           htmlFor="checkbox"
-          className="h-12 bg-gray-100 shadow-md text-gray-600 pt-3 text-center sm:col-span-2"
+          className="h-12 dark:bg-[#232F44] bg-gray-100 shadow-md text-gray-600 dark:text-gray-300 pt-3 text-center sm:col-span-2"
         >
           O produto esta disponivel?
           <input

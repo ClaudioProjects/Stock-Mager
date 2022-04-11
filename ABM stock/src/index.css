@@ -35,10 +35,22 @@
 }
 
 .input-text {
-  @apply h-12 w-full bg-gray-100 shadow-md rounded-sm border-2 border-transparent border-solid focus:border-violet-200 outline-0 placeholder:text-gray-600
+  @apply h-12 w-full bg-gray-100 dark:bg-[#232F44] dark:shadow-xl shadow-md rounded-sm border-2 border-transparent border-solid focus:border-violet-200 dark:focus:border-slate-900 outline-0 placeholder:text-gray-600 dark:placeholder:text-gray-300
 }
 
 .error-text {
   @apply absolute top-0 left-1 text-xs z-10 text-red-400
+}
+
+.dark-mode {
+  @apply absolute flex items-center bottom-3 text-[0] px-[2px] dark:bg-slate-700 bg-slate-50 w-14 h-6 rounded-2xl border-[3px] border-solid dark:border-slate-50 border-slate-700
+}
+
+.sweet-transition {
+  @apply transition ease-out delay-100
+}
+
+.end {
+  @apply translate-x-[34px]
 }
 
