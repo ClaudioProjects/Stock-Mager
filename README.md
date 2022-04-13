@@ -5,7 +5,7 @@
 
 ## ABM stock 
 
-Um CRUD, com finalidade de cadastrar produtos de um stock, possuindo função de ordenar e guardar os dados salvos
+Um CRUD, com finalidade de cadastrar produtos de um estoque, possuindo função de ordenar e guardar os dados salvos
 
 * Estrutura de dados : { "client": { "name": "name", "surname": "surname", "email": "email }, "product": { "name": "name", "category": "category" }, "quantity": "quantity", "price": "price", "active": boolean }
 
