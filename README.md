@@ -71,7 +71,7 @@ npm start
 * Abra o terminal com suporte aos comando git na pasta onde os arquivos vão ser clonados e execute o comando abaixo:
 
 ```git
-git clone https://github.com/ClaudioProjects/LexartLabsTest
+git clone https://github.com/ClaudioProjects/Stock-Mager
 ```
 
 * Com os arquivos clonados, entre na pasta Algoritimo e estrutura de dados e abra o arquivo index.html
